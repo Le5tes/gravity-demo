@@ -5,13 +5,13 @@ export function configureTestSuite(configureAction?: () => void) {
     const testBedApi: any = getTestBed();
     const originReset = TestBed.resetTestingModule;
 
-    before(() => {
+    beforeAll(() => {
         TestBed.resetTestingModule();
         TestBed.resetTestingModule = () => TestBed;
     });
 
     if (configureAction) {
-        before(async(() => {
+        beforeAll(async(() => {
             configureAction();
             TestBed.compileComponents();
         }));
@@ -23,7 +23,7 @@ export function configureTestSuite(configureAction?: () => void) {
         cleanStyles();
     });
 
-    after(() => {
+    afterAll(() => {
         TestBed.resetTestingModule = originReset;
         TestBed.resetTestingModule();
     });

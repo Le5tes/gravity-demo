@@ -2,7 +2,7 @@
   <mat-sidenav #drawer class="sidenav" data-qa="sidenav" role="dialog" fixedInViewport>
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <!-- links to pages here -->
+      <a data-qa="nav-performance" (click)="navigateTo('performance')">Performance</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

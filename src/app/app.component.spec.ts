@@ -1,6 +1,6 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture, fakeAsync, tick, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { TestUtils } from 'src/test-utils/classes/test-utils';
+import { TestUtils, byDataQa } from 'src/test-utils/classes/test-utils';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -8,11 +8,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
+import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from './app-routing.module';
+import { Router } from '@angular/router';
+import { Location } from "@angular/common";
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let appComponent: AppComponent;
   let testUtils: TestUtils;
+  let location: Location;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,15 +32,19 @@ describe('AppComponent', () => {
         MatButtonModule,
         MatSidenavModule,
         MatIconModule,
-        MatListModule
+        MatListModule,
+        RouterTestingModule.withRoutes(routes)
       ]
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
     fixture = TestBed.createComponent(AppComponent);
     appComponent = fixture.componentInstance;
     testUtils = TestUtils.createUtils(fixture);
+    fixture.detectChanges();
   });
 
   it('should create the app', () => {
@@ -45,6 +55,19 @@ describe('AppComponent', () => {
     it('should exist', () => {
       expect(testUtils.elemByDataQa('sidenav')).toBeTruthy();
     });
+
+    describe('performance nav', () => {
+      it('should exist', () => {
+        expect(testUtils.elemByDataQa('nav-performance')).toBeTruthy();
+      });
+
+      it('should navigate to the performance page when clicked', fakeAsync(() => {
+        testUtils.clickButtonQa('nav-performance');
+        tick();
+
+        expect(location.path()).toEqual('/performance');
+      }));
+    });
   });
 
   describe('toolbar', () => {
@@ -52,18 +75,4 @@ describe('AppComponent', () => {
       expect(testUtils.elemByDataQa('toolbar')).toBeTruthy();
     });
   });
-
-  // it(`should have as title 'gravity-demo'`, () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.debugElement.componentInstance;
-  //   expect(app.title).toEqual('gravity-demo');
-  // });
-
-  // it('should render title in a h1 tag', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.debugElement.nativeElement;
-  //   expect(compiled.querySelector('h1').textContent).toContain('Welcome to gravity-demo!');
-  // });
-
 });
