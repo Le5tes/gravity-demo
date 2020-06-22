@@ -20,6 +20,7 @@ export function configureTestSuite(configureAction?: () => void) {
     afterEach(() => {
         testBedApi._activeFixtures.forEach((fixture: ComponentFixture<any>) => fixture.destroy());
         testBedApi._instantiated = false;
+        testBedApi._testModuleRef = null;
         cleanStyles();
     });
 
