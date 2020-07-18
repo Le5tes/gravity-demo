@@ -32,8 +32,8 @@ phases:
             - git merge master
             - git push --set-upstream "https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Le5tes/gravity-utils.git" development
 
-    artifacts:
-        files:
-            - "**/*"
-        discard-paths: no
-        base-directory: dist/gravity-demo
+artifacts:
+    files:
+        - "**/*"
+    discard-paths: no
+    base-directory: dist/gravity-demo
