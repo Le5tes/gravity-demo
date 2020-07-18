@@ -5,11 +5,6 @@ phases:
         runtime-versions:
             nodejs: 12
         commands: 
-            - echo "checkout development"
-            - git config --global user.name "Tim Williamson (Auto-versioner)"
-            - git config --global user.email "timwilliamson1337@gmail.com"
-            - git fetch
-            - git checkout development
             - npm i
     pre_build:
         commands: 
@@ -17,20 +12,8 @@ phases:
             - npm test
     build:
         commands:
-            - echo "merge to master"
-            - git checkout master
-            - git merge development
-            - echo "increment release version"
-            - npm version patch -m "Release version"
-            - git push --set-upstream "https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Le5tes/gravity-utils.git" master
             - echo "build"
             - ng build --prod
-    post_build:
-        commands: 
-            - echo "merge back to development"
-            - git checkout development
-            - git merge master
-            - git push --set-upstream "https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Le5tes/gravity-utils.git" development
 
 artifacts:
     files:
