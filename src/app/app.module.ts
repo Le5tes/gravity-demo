@@ -15,7 +15,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { SimulationComponent } from './pages/demonstrator/simulation/simulation.component';
+import { SimulationComponent } from './components/simulation/simulation.component';
+import { HighlightJsModule } from 'ngx-highlight-js';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { SimulationComponent } from './pages/demonstrator/simulation/simulation.
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    HighlightJsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

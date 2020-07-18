@@ -6,7 +6,7 @@ import { TestUtils } from 'src/test-utils/classes/test-utils';
 import { configureTestSuite } from 'src/test-utils/functions/configure-test-suite';
 import Konva from 'konva';
 
-fdescribe('SimulationComponent', () => {
+describe('SimulationComponent', () => {
   let component: SimulationComponent;
   let fixture: ComponentFixture<SimulationComponent>;
   let testUtils: TestUtils;
@@ -31,12 +31,11 @@ fdescribe('SimulationComponent', () => {
   it('should have a canvas', () => {
     expect(testUtils.elemByDataQa('simulation-canvas')).toBeTruthy();
   });
-
-  describe('visualisation', () => {
-    it('should have a konva stage', () => {
-      expect(component.stage).toBeTruthy();
-    })
-  })
+  
+  it('should create the conva stage and layer', () => {
+    expect(component.stage).toBeTruthy();
+    expect(component.layer).toBeTruthy();
+  });
 
   describe('set bodies', () => {
     let sandbox;
@@ -49,25 +48,19 @@ fdescribe('SimulationComponent', () => {
       stubSimulatorCreate.returns(new Promise(res => res(stubSimulator)));
     })
 
-    it('should create the conva layer', () => {
-      component.bodies = [{mass: 100, xPosition: 0, yPosition: 0, xVelocity: 0, yVelocity: 0}]
-
-      expect(component.layer).toBeTruthy();
-    })
-
     it('should set the internal bodies and add render property as a konva circle', () => {
-      component.bodies = [{mass: 100, xPosition: 0, yPosition: 0, xVelocity: 0, yVelocity: 0}]
+      component.bodies = [{mass: 100, positionX: 0, positionY: 0, xVelocity: 0, yVelocity: 0}]
 
       expect(component._bodies[0].mass).toEqual(100);
-      expect(component._bodies[0].xPosition).toEqual(0);
-      expect(component._bodies[0].yPosition).toEqual(0);
+      expect(component._bodies[0].positionX).toEqual(0);
+      expect(component._bodies[0].positionY).toEqual(0);
       expect(component._bodies[0].xVelocity).toEqual(0);
       expect(component._bodies[0].yVelocity).toEqual(0);
       expect(component._bodies[0].render instanceof Konva.Circle).toBeTruthy();
     });
 
     it('should create a simulator', () => {
-      component.bodies = [{mass: 100, xPosition: 0, yPosition: 0, xVelocity: 0, yVelocity: 0}]
+      component.bodies = [{mass: 100, positionX: 0, positionY: 0, xVelocity: 0, yVelocity: 0}]
 
       expect(stubSimulatorCreate.calledOnce).toBeTruthy();
     });
@@ -75,7 +68,7 @@ fdescribe('SimulationComponent', () => {
     it('should subscribe to the timer', fakeAsync(() => {
       const stubTimerSubscribe = sandbox.stub(component.$timer, 'subscribe')
 
-      component.bodies = [{mass: 100, xPosition: 0, yPosition: 0, xVelocity: 0, yVelocity: 0}]
+      component.bodies = [{mass: 100, positionX: 0, positionY: 0, xVelocity: 0, yVelocity: 0}]
       tick();
 
       expect(stubTimerSubscribe.calledOnce).toBeTruthy();
@@ -86,7 +79,7 @@ fdescribe('SimulationComponent', () => {
       let stubY;
       let stubDraw;
       beforeEach(fakeAsync(() => {
-        component.bodies = [{mass: 100, xPosition: 0, yPosition: 0, xVelocity: 0, yVelocity: 0}]
+        component.bodies = [{mass: 100, positionX: 0, positionY: 0, xVelocity: 0, yVelocity: 0}]
         stubX = sinon.stub(component._bodies[0].render, 'x')
         stubY = sinon.stub(component._bodies[0].render, 'y')
         stubDraw = sinon.stub(component.stage, 'batchDraw')
@@ -99,8 +92,8 @@ fdescribe('SimulationComponent', () => {
       });
 
       it('should update the positions of the renders based on the body positions', () => {
-        expect(stubX.calledOnceWith(component._bodies[0].xPosition)).toBeTruthy();
-        expect(stubY.calledOnceWith(component._bodies[0].yPosition)).toBeTruthy();
+        expect(stubX.calledOnceWith(component._bodies[0].positionX)).toBeTruthy();
+        expect(stubY.calledOnceWith(component._bodies[0].positionY)).toBeTruthy();
       });
 
       it('should draw everything to the stage', () => {

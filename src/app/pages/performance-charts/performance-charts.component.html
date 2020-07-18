@@ -1,8 +1,15 @@
-<div class="page-container">
+<div class="content-container">
   <h1 data-qa="title">Performance Breakdown</h1>
     
   <div data-qa="bodycount-time-chart">
     <h2 data-qa="bodycount-time-chart-title">Body Count vs Time</h2>
+    <img class="loading" *ngIf="!bodyCountTimeChart" src="/assets/loading.svg">
     <canvas data-qa="bodycount-time-chart-canvas" class="chart" id="bodycount-time-chart-canvas"></canvas>
+  </div>
+
+  <div data-qa="iteration-time-chart">
+    <h2 data-qa="iteration-time-chart-title">Iteration # vs Time</h2>
+    <img class="loading" *ngIf="!iterationsChart" src="/assets/loading.svg">
+    <canvas data-qa="iteration-time-chart-canvas" class="chart" id="iteration-time-chart-canvas"></canvas>
   </div>
 </div>

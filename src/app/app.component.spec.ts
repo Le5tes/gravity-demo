@@ -68,6 +68,19 @@ describe('AppComponent', () => {
         expect(location.path()).toEqual('/performance');
       }));
     });
+
+    describe('demonstrator nav', () => {
+      it('should exist', () => {
+        expect(testUtils.elemByDataQa('nav-demonstrator')).toBeTruthy();
+      });
+
+      it('should navigate to the performance page when clicked', fakeAsync(() => {
+        testUtils.clickButtonQa('nav-demonstrator');
+        tick();
+
+        expect(location.path()).toEqual('/home');
+      }));
+    });
   });
 
   describe('toolbar', () => {

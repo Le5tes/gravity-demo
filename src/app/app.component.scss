@@ -10,6 +10,15 @@
   background: inherit;
 }
 
+.sidenav-button {
+  padding: 15px 30px;
+}
+
+.hover :hover{
+  background-color: #404040;
+  cursor: pointer;
+}
+
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;

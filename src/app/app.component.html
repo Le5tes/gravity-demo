@@ -2,7 +2,9 @@
   <mat-sidenav #drawer class="sidenav" data-qa="sidenav" role="dialog" fixedInViewport>
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a data-qa="nav-performance" (click)="navigateTo('performance')">Performance</a>
+      <a data-qa="nav-demonstrator" (click)="navigateTo('home')" class="hover"><div class="sidenav-button">Home</div></a>
+      <a data-qa="nav-demonstrator" (click)="navigateTo('demonstrator')" class="hover"><div class="sidenav-button">Try it out!</div></a>
+      <a data-qa="nav-performance" (click)="navigateTo('performance')" class="hover"><div class="sidenav-button">Performance</div></a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -14,7 +16,9 @@
         (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>gravity-demo</span>
+
+      <img src="/assets/logo.png" srcset="/assets/logo.svg" height="50" width="50">
+      <span>gravity-simulator</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

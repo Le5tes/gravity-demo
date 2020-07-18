@@ -1,3 +1,13 @@
-<p>
-  demonstrator works!
-</p>
+<div class="content-container">
+    <h1>Demonstrator</h1>
+    <app-simulation  data-qa="simulator" [width]="width" [height]="height" [bodies]="bodies"></app-simulation>
+    <form [formGroup]="form">
+        <div>
+            <div>
+                <label for="bodies-input">Number of bodies</label>
+            </div>
+            <input id="bodies-input" data-qa="bodies-input" type="number" formControlName="bodyCount"/>
+            <button data-qa="set-simulation" (click)="setBodies()">Set Simulation</button>
+        </div>
+    </form>
+</div>
