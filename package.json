@@ -21,7 +21,7 @@
     "@angular/platform-browser": "~9.0.2",
     "@angular/platform-browser-dynamic": "~9.0.2",
     "@angular/router": "~9.0.2",
-    "@gravity-simulator/gravity-simulator": "0.0.4",
+    "@gravity-simulator/gravity-simulator": "0.0.5",
     "@gravity-simulator/gravity-tester": "0.0.10",
     "@gravity-simulator/gravity-utils": "0.0.2",
     "chart.js": "^2.9.3",
