@@ -7,8 +7,7 @@ module.exports = cfg => {
   }
   cfg.optimization.minimizer.filter (({constructor: {name}}) => name === 'TerserPlugin')
   .forEach (terser => {
-    terser.options.terserOptions.compress=false;
-    terser.options.terserOptions.mangle=false;
+    terser.options.terserOptions = {compress: false, mangle: false};
   });
   
   return cfg;
