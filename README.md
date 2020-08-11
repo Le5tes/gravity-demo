@@ -1,6 +1,6 @@
 # GravityDemo
 
-## See me in action at gravitysimulator.net
+## See me in action at www.gravitysimulator.net
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.2.
 
