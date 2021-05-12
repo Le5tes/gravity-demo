@@ -24,7 +24,7 @@
     "@gravity-simulator/gravity-simulator": "0.0.5",
     "@gravity-simulator/gravity-tester": "0.0.10",
     "@gravity-simulator/gravity-utils": "0.0.2",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "core-js": "^2.5.4",
     "konva": "^6.0.0",
     "ngx-highlight-js": "^9.0.0",
